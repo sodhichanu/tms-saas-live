@@ -50,6 +50,52 @@ body {
   animation: moveRoad 2.2s linear infinite;
 }
 
+.highway {
+  position: relative;
+  height: 66px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+  overflow: hidden;
+}
+
+.highway::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 31px;
+  height: 4px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,0.9) 0px,
+    rgba(255,255,255,0.9) 22px,
+    transparent 22px,
+    transparent 56px
+  );
+  animation: moveRoad 1.4s linear infinite;
+}
+
+.truck {
+  position: absolute;
+  top: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.35));
+}
+
+.truck-a {
+  left: -72px;
+  animation: truckDrive 6.4s linear infinite;
+}
+
+.truck-b {
+  left: -72px;
+  animation: truckDrive 8.2s linear infinite;
+  animation-delay: 2.6s;
+}
+
 .floating {
   animation: floating 4.4s ease-in-out infinite;
 }
@@ -90,6 +136,11 @@ body {
 @keyframes moveRoad {
   from { background-position-x: 0; }
   to { background-position-x: 140px; }
+}
+
+@keyframes truckDrive {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(100vw + 260px)); }
 }
 
 @keyframes floating {

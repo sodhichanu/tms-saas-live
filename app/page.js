@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ActivitySquare, Route, Truck, Users2, Gauge, Timer, ShieldCheck, BadgeDollarSign, Building2, FileCheck2, Sparkles } from 'lucide-react';
+import { ActivitySquare, Route, Truck, Users2, Gauge, Timer, ShieldCheck, BadgeDollarSign, Building2, FileCheck2, Sparkles, Facebook, Instagram, MessageCircle } from 'lucide-react';
 import { estimateQuote, regions, testimonials, trackingLookup, trustSignals } from '@/lib/mockData';
 import Badge from '@/components/ui/Badge';
 
@@ -24,6 +24,15 @@ export default function LandingPage() {
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8">
+      <header className="mb-4 flex items-center justify-between rounded-2xl border border-slate-200 bg-white/85 p-3 backdrop-blur">
+        <p className="font-display text-lg font-semibold text-brand-900">TransNorth TMS</p>
+        <nav className="flex items-center gap-2 text-sm">
+          <a href="#features" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Features</a>
+          <a href="#reviews" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Reviews</a>
+          <Link href="/contact" className="rounded-lg bg-brand-500 px-3 py-2 font-semibold text-white hover:bg-brand-600">Contact Us</Link>
+        </nav>
+      </header>
+
       <section className="card glow-border relative overflow-hidden p-7 md:p-10">
         <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-100 blur-3xl" />
         <div className="absolute -bottom-20 -left-10 h-64 w-64 rounded-full bg-orange-100 blur-3xl" />
@@ -33,16 +42,21 @@ export default function LandingPage() {
 
         <p className="text-sm font-medium text-brand-600">Modern TMS for North India Lanes</p>
         <h1 className="mt-2 max-w-4xl font-display text-4xl font-bold leading-tight text-night md:text-5xl">
-          Professional transport and trucking software for dispatch, tracking, ePOD, billing, and customer portals.
+          Professional transport and trucking software with moving-fleet visibility, ePOD, billing automation, and secure customer portals.
         </h1>
         <p className="mt-4 max-w-3xl text-slate-600">
-          Purpose-built for Delhi, Panipat, UP, Bihar, Punjab, Himachal, and Jammu operations with real-time fleet visibility and financial control.
+          Built for Delhi, Panipat, UP, Bihar, Punjab, Himachal, and Jammu with real-time control, compliance monitoring, and profitability intelligence.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/dashboard" className="rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600">Launch Dashboard</Link>
           <Link href="/portal" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Open Client Portal</Link>
-          <Link href="/epod" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Try ePOD</Link>
+          <Link href="/contact" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Book a Demo</Link>
+        </div>
+
+        <div className="mt-6 highway">
+          <span className="truck truck-a">🚚</span>
+          <span className="truck truck-b">🚛</span>
         </div>
 
         <div className="mt-7 grid gap-3 md:grid-cols-4">
@@ -104,7 +118,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="mt-7 grid gap-4 lg:grid-cols-3">
+      <section className="mt-7 grid gap-4 lg:grid-cols-3" id="reviews">
         <div className="card p-5 lg:col-span-2">
           <h2 className="font-display text-xl font-semibold">Regions Served</h2>
           <div className="mt-4 flex flex-wrap gap-2">
@@ -119,7 +133,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="card p-5">
-          <h2 className="font-display text-xl font-semibold">Client Testimonials</h2>
+          <h2 className="font-display text-xl font-semibold">What Customers Think</h2>
           <div className="mt-3 space-y-3">
             {testimonials.map((t) => (
               <div key={t.name} className="rounded-lg border border-slate-100 p-3">
@@ -130,6 +144,18 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      <footer className="mt-8 rounded-2xl border border-slate-200 bg-white p-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-slate-600">Need help with your shipment plan? Connect with us.</p>
+          <div className="flex items-center gap-2">
+            <a href="https://facebook.com" target="_blank" className="rounded-lg border border-slate-200 p-2 text-slate-600 hover:bg-slate-50" rel="noreferrer"><Facebook size={16} /></a>
+            <a href="https://instagram.com" target="_blank" className="rounded-lg border border-slate-200 p-2 text-slate-600 hover:bg-slate-50" rel="noreferrer"><Instagram size={16} /></a>
+            <a href="https://wa.me/919810000000" target="_blank" className="rounded-lg border border-slate-200 p-2 text-slate-600 hover:bg-slate-50" rel="noreferrer"><MessageCircle size={16} /></a>
+            <Link href="/contact" className="rounded-lg bg-brand-500 px-3 py-2 text-sm font-semibold text-white">Contact Us</Link>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
