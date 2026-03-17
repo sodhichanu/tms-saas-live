@@ -92,7 +92,7 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-2 gap-3">
             <div className="photo-card col-span-2 h-44">
-              <img src="/images/indian-highway-truck.jpg" alt="Indian long-haul highway truck" className="h-full w-full object-cover" />
+              <img src="images/indian-highway-truck.jpg" alt="Indian long-haul highway truck" className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/20 to-transparent" />
               <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-slate-900">LoveKush Transport</span>
               <span className="photo-tag">Pan-India Long Haul</span>
