@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Truck, Route, Package, Users, Handshake, Wallet, ShieldCheck, FileCheck2 } from 'lucide-react';
+import { LayoutDashboard, Truck, Route, Package, Users, Handshake, Wallet, ShieldCheck, FileCheck2, MapPinned } from 'lucide-react';
 import clsx from 'clsx';
 
 const links = [
@@ -20,20 +20,22 @@ const links = [
 export default function Sidebar() {
   const pathname = usePathname();
   return (
-    <aside className="card h-fit min-w-[250px] overflow-hidden p-0">
-      <div className="bg-gradient-to-r from-brand-900 via-brand-600 to-cyan-500 p-4 text-white">
+    <aside className="card h-fit overflow-hidden p-0 lg:sticky lg:top-4">
+      <div className="panel-dark p-4">
         <p className="font-display text-lg font-semibold">TransNorth TMS</p>
-        <p className="mt-1 text-xs text-white/80">North India Control Tower</p>
+        <p className="mt-1 flex items-center gap-1 text-xs text-white/80"><MapPinned size={13} /> India Operations Grid</p>
       </div>
       <div className="p-4">
-        <nav className="mt-2 space-y-1">
+        <nav className="space-y-1">
           {links.map(({ href, label, icon: Icon }) => (
             <Link
               key={href}
               href={href}
               className={clsx(
                 'flex items-center gap-2 rounded-xl px-3 py-2 text-sm transition',
-                pathname === href ? 'bg-brand-50 text-brand-900' : 'text-slate-600 hover:bg-slate-50 hover:translate-x-1'
+                pathname === href
+                  ? 'bg-orange-50 text-orange-700'
+                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 hover:translate-x-1'
               )}
             >
               <Icon size={16} />

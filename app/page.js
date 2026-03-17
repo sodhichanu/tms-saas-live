@@ -6,20 +6,18 @@ import {
   ActivitySquare,
   BadgeDollarSign,
   BriefcaseBusiness,
-  Building2,
+  CheckCircle2,
   Clock3,
   Download,
   Facebook,
   FileCheck2,
-  Gauge,
   Instagram,
+  MapPin,
   MessageCircle,
   Route,
   ShieldCheck,
   Sparkles,
-  Timer,
   Truck,
-  Users2,
 } from 'lucide-react';
 import {
   documentCenter,
@@ -41,63 +39,52 @@ const features = [
   { title: 'Secure Client Portal', text: 'Shipment history, invoice downloads, and preferred addresses.', icon: ShieldCheck },
 ];
 
-const modes = {
-  operations: {
-    title: 'Operations Control Template',
-    text: 'A dispatcher-first layout with trip boards, delay alerts, and lane-level fleet visibility.',
-    points: ['Live fleet heatmap', 'Delay alert panel', 'Shift-wise dispatch tracking'],
-  },
-  client: {
-    title: 'Client Experience Template',
-    text: 'Self-service pages for tracking, quote requests, invoices, and communication logs.',
-    points: ['Tracking portal', 'Quote + booking forms', 'Invoice & document center'],
-  },
-  finance: {
-    title: 'Finance Intelligence Template',
-    text: 'Profitability-first dashboards for fuel, tolls, driver cost, and receivables.',
-    points: ['Trip margin analytics', 'Outstanding dashboard', 'Invoice automation'],
-  },
-};
+const processFlow = [
+  { id: '01', title: 'Request & Quote', detail: 'Customer submits lane and load details to get instant pricing.' },
+  { id: '02', title: 'Assign Fleet', detail: 'Dispatcher allocates truck + driver based on capacity and region.' },
+  { id: '03', title: 'Track & Deliver', detail: 'Live ETA, route compliance, and electronic proof of delivery.' },
+  { id: '04', title: 'Invoice & Insights', detail: 'Automated billing and margin analytics for every shipment.' },
+];
 
 export default function LandingPage() {
   const [trackNo, setTrackNo] = useState('ORD5001');
   const [quote, setQuote] = useState({ distanceKm: 420, weightTons: 12, cargoType: 'General', serviceLevel: 'Standard' });
-  const [mode, setMode] = useState('operations');
 
   const tracking = trackingLookup[trackNo.trim().toUpperCase()] || null;
   const estimatedCost = useMemo(() => estimateQuote(quote), [quote]);
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8">
-      <header className="mb-4 flex items-center justify-between rounded-2xl border border-slate-200 bg-white/90 p-3 backdrop-blur">
-        <p className="font-display text-lg font-semibold text-brand-900">TransNorth TMS</p>
-        <nav className="flex items-center gap-2 text-sm">
+      <header className="glass mb-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200/80 px-4 py-3">
+        <div>
+          <p className="font-display text-lg font-semibold text-slate-900">TransNorth TMS</p>
+          <p className="text-xs text-slate-500">Modern trucking and transport software for India</p>
+        </div>
+        <nav className="flex flex-wrap items-center gap-2 text-sm">
           <a href="#features" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Features</a>
-          <a href="#templates" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Templates</a>
+          <a href="#workflow" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Workflow</a>
           <a href="#reviews" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Reviews</a>
-          <Link href="/contact" className="rounded-lg bg-brand-500 px-3 py-2 font-semibold text-white hover:bg-brand-600">Contact Us</Link>
+          <Link href="/contact" className="rounded-lg bg-orange-500 px-3 py-2 font-semibold text-white hover:bg-orange-600">Contact Us</Link>
         </nav>
       </header>
 
-      <section className="card glow-border relative overflow-hidden p-6 md:p-8">
-        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand-100 blur-3xl" />
-        <div className="absolute -bottom-16 -left-8 h-52 w-52 rounded-full bg-orange-100 blur-3xl" />
-        <div className="grid gap-6 lg:grid-cols-[1.15fr_1fr]">
+      <section className="hero-rig p-6 text-white md:p-8">
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_1fr] lg:items-end">
           <div>
-            <p className="reveal text-xs font-semibold uppercase tracking-[0.14em] text-brand-600">Professional Transport Technology</p>
-            <h1 className="reveal reveal-delay-1 mt-2 max-w-3xl font-display text-3xl font-bold leading-snug text-night md:text-4xl">
-              Premium <span className="gradient-text">trucking operations platform</span> for India with tracking, ePOD, booking, and billing in one system.
+            <p className="reveal text-xs font-semibold uppercase tracking-[0.16em] text-orange-200">Transport SaaS Platform</p>
+            <h1 className="reveal reveal-delay-1 mt-2 max-w-3xl font-display text-3xl font-bold leading-tight md:text-5xl">
+              Move freight smarter with a <span className="gradient-text">next-gen trucking control tower</span>.
             </h1>
-            <p className="reveal reveal-delay-2 mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
-              Built for Delhi, Panipat, UP, Bihar, Punjab, Himachal, and Jammu to give dispatch teams and customers a modern, interactive experience.
+            <p className="reveal reveal-delay-2 mt-4 max-w-2xl text-sm text-slate-100/90 md:text-base">
+              One platform for booking, live tracking, dispatch, ePOD, CRM, and finance operations across North India routes.
             </p>
             <div className="reveal reveal-delay-3 mt-5 flex flex-wrap gap-3">
-              <Link href="/dashboard" className="rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600">Launch Dashboard</Link>
-              <Link href="/portal" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Client Portal</Link>
-              <Link href="/contact" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Book a Demo</Link>
+              <Link href="/dashboard" className="rounded-xl bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600">Launch Dashboard</Link>
+              <Link href="/portal" className="rounded-xl border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20">Open Client Portal</Link>
+              <Link href="/contact" className="rounded-xl border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20">Request Demo</Link>
             </div>
 
-            <div className="mt-5 highway">
+            <div className="mt-6 highway">
               <span className="truck truck-a">🚚</span>
               <span className="truck truck-b">🚛</span>
             </div>
@@ -105,16 +92,16 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-2 gap-3">
             <div className="photo-card col-span-2 h-44">
-              <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1400&q=80" alt="Trucks on highway" className="h-full w-full object-cover" />
-              <span className="photo-tag">Live Fleet</span>
+              <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1400&q=80" alt="Freight trucks on highway" className="h-full w-full object-cover" />
+              <span className="photo-tag">Pan-India Long Haul</span>
             </div>
-            <div className="photo-card h-36">
-              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80" alt="Warehouse logistics" className="h-full w-full object-cover" />
-              <span className="photo-tag">Warehouse Ops</span>
+            <div className="photo-card h-32">
+              <img src="https://images.unsplash.com/photo-1577416412292-747c6607f055?auto=format&fit=crop&w=900&q=80" alt="Fleet yard" className="h-full w-full object-cover" />
+              <span className="photo-tag">Fleet Yard</span>
             </div>
-            <div className="photo-card h-36">
-              <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80" alt="Freight loading" className="h-full w-full object-cover" />
-              <span className="photo-tag">Freight Handling</span>
+            <div className="photo-card h-32">
+              <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80" alt="Warehouse loading" className="h-full w-full object-cover" />
+              <span className="photo-tag">Dock Loading</span>
             </div>
           </div>
         </div>
@@ -123,19 +110,19 @@ export default function LandingPage() {
       <section className="stat-marquee mt-4 card overflow-hidden p-0">
         <div className="marquee-track">
           <span>Active Trucks 86</span>
-          <span>Deliveries in Progress 42</span>
+          <span>Live Deliveries 42</span>
           <span>On-Time Rate 91.2%</span>
           <span>Monthly Revenue ₹48.25L</span>
           <span>Fuel Cost ₹13.9L</span>
           <span>Active Corridors 27</span>
+          <span>Client Satisfaction 4.8/5</span>
           <span>Active Trucks 86</span>
-          <span>Deliveries in Progress 42</span>
         </div>
       </section>
 
       <section className="mt-6 grid gap-4 lg:grid-cols-2">
         <div className="card card-lift p-5">
-          <p className="font-display text-lg font-semibold">Track Shipment</p>
+          <p className="font-display text-lg font-semibold text-slate-900">Track Shipment</p>
           <p className="mt-1 text-sm text-slate-600">Enter tracking number (try: ORD5001, ORD5002)</p>
           <div className="mt-3 flex gap-2">
             <input value={trackNo} onChange={(e) => setTrackNo(e.target.value)} className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm" placeholder="Enter tracking number" />
@@ -153,7 +140,7 @@ export default function LandingPage() {
         </div>
 
         <div className="card card-lift p-5">
-          <p className="font-display text-lg font-semibold">Instant Freight Quote</p>
+          <p className="font-display text-lg font-semibold text-slate-900">Instant Freight Quote</p>
           <p className="mt-1 text-sm text-slate-600">Estimate by distance, cargo, and service level.</p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             <input type="number" value={quote.distanceKm} onChange={(e) => setQuote({ ...quote, distanceKm: Number(e.target.value) })} className="rounded-xl border border-slate-200 px-3 py-2 text-sm" placeholder="Distance (km)" />
@@ -161,52 +148,38 @@ export default function LandingPage() {
             <select value={quote.cargoType} onChange={(e) => setQuote({ ...quote, cargoType: e.target.value })} className="rounded-xl border border-slate-200 px-3 py-2 text-sm"><option>General</option><option>Fragile</option><option>Hazmat</option></select>
             <select value={quote.serviceLevel} onChange={(e) => setQuote({ ...quote, serviceLevel: e.target.value })} className="rounded-xl border border-slate-200 px-3 py-2 text-sm"><option>Standard</option><option>Priority</option><option>Express</option></select>
           </div>
-          <div className="mt-4 rounded-xl bg-brand-50 p-3">
-            <p className="text-xs uppercase text-brand-700">Estimated Quote</p>
-            <p className="text-2xl font-semibold text-brand-900">₹{estimatedCost.toLocaleString('en-IN')}</p>
+          <div className="mt-4 rounded-xl bg-orange-50 p-3">
+            <p className="text-xs uppercase text-orange-700">Estimated Quote</p>
+            <p className="text-2xl font-semibold text-orange-900">₹{estimatedCost.toLocaleString('en-IN')}</p>
           </div>
         </div>
       </section>
 
-      <section id="templates" className="mt-6 card p-5">
+      <section id="workflow" className="mt-6 card p-5">
         <div className="mb-3 flex items-center gap-2">
-          <Sparkles size={18} className="text-brand-600" />
-          <h2 className="font-display text-xl font-semibold">Interactive Layout Templates</h2>
+          <MapPin size={18} className="text-orange-600" />
+          <h2 className="font-display text-xl font-semibold">How Our Transport Workflow Runs</h2>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {Object.keys(modes).map((k) => (
-            <button
-              key={k}
-              onClick={() => setMode(k)}
-              className={`rounded-xl px-3 py-2 text-sm font-medium transition ${mode === k ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
-            >
-              {k === 'operations' ? 'Operations' : k === 'client' ? 'Client Experience' : 'Finance'}
-            </button>
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {processFlow.map((step) => (
+            <article key={step.id} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Step {step.id}</p>
+              <p className="mt-1 font-display text-base font-semibold text-slate-900">{step.title}</p>
+              <p className="mt-1 text-sm text-slate-600">{step.detail}</p>
+            </article>
           ))}
-        </div>
-        <div className="mt-4 grid gap-4 md:grid-cols-[1fr_280px]">
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-            <p className="font-display text-lg font-semibold">{modes[mode].title}</p>
-            <p className="mt-1 text-sm text-slate-600">{modes[mode].text}</p>
-            <ul className="mt-3 space-y-2 text-sm text-slate-700">
-              {modes[mode].points.map((p) => <li key={p}>• {p}</li>)}
-            </ul>
-          </div>
-          <div className="photo-card h-[180px] md:h-full">
-            <img src={mode === 'operations' ? 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=900&q=80' : mode === 'client' ? 'https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=900&q=80' : 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80'} alt="Template preview" className="h-full w-full object-cover" />
-          </div>
         </div>
       </section>
 
       <section className="mt-6" id="features">
         <div className="mb-3 flex items-center gap-2">
-          <Sparkles size={18} className="text-brand-600" />
+          <Sparkles size={18} className="text-orange-600" />
           <h2 className="font-display text-xl font-semibold md:text-2xl">Core Functional Modules</h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {features.map((item) => (
             <article key={item.title} className="card card-lift glow-border p-5">
-              <item.icon className="text-brand-600 floating" size={20} />
+              <item.icon className="text-orange-600 floating" size={20} />
               <h3 className="mt-3 font-display text-base font-semibold md:text-lg">{item.title}</h3>
               <p className="mt-1 text-sm text-slate-600">{item.text}</p>
             </article>
@@ -217,7 +190,7 @@ export default function LandingPage() {
       <section className="mt-6 grid gap-4 lg:grid-cols-2">
         <div className="card card-lift p-5">
           <div className="mb-2 flex items-center gap-2">
-            <Clock3 size={18} className="text-brand-600" />
+            <Clock3 size={18} className="text-orange-600" />
             <h2 className="font-display text-lg font-semibold md:text-xl">Transit Time Matrix (India)</h2>
           </div>
           <div className="overflow-x-auto">
@@ -239,7 +212,7 @@ export default function LandingPage() {
 
         <div className="card card-lift p-5">
           <div className="mb-2 flex items-center gap-2">
-            <Download size={18} className="text-brand-600" />
+            <Download size={18} className="text-orange-600" />
             <h2 className="font-display text-lg font-semibold md:text-xl">Document Center</h2>
           </div>
           <div className="space-y-2">
@@ -250,10 +223,10 @@ export default function LandingPage() {
               </button>
             ))}
           </div>
-          <div className="mt-4 rounded-xl bg-brand-50 p-3">
-            <p className="flex items-center gap-2 text-sm font-medium text-brand-900"><BriefcaseBusiness size={16} /> Drive With Us</p>
+          <div className="mt-4 rounded-xl bg-blue-50 p-3">
+            <p className="flex items-center gap-2 text-sm font-medium text-blue-900"><BriefcaseBusiness size={16} /> Drive With Us</p>
             <p className="mt-1 text-sm text-slate-600">Partner as a fleet owner or driver on major North India lanes.</p>
-            <Link href="/contact" className="mt-2 inline-block text-sm font-semibold text-brand-700">Apply / Contact Team →</Link>
+            <Link href="/contact" className="mt-2 inline-block text-sm font-semibold text-blue-700">Apply / Contact Team →</Link>
           </div>
         </div>
       </section>
@@ -263,12 +236,12 @@ export default function LandingPage() {
           <h2 className="font-display text-lg font-semibold md:text-xl">Regions Served</h2>
           <div className="mt-4 flex flex-wrap gap-2">
             {regions.map((region) => (
-              <span key={region} className="rounded-full bg-brand-50 px-3 py-1 text-sm text-brand-900 transition hover:scale-105 hover:bg-brand-100">{region}</span>
+              <span key={region} className="rounded-full bg-orange-50 px-3 py-1 text-sm text-orange-900 transition hover:scale-105 hover:bg-orange-100">{region}</span>
             ))}
           </div>
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
             {trustSignals.map((signal) => (
-              <p key={signal} className="flex items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-sm text-slate-700"><ShieldCheck size={15} className="text-brand-600" /> {signal}</p>
+              <p key={signal} className="flex items-center gap-2 rounded-lg bg-slate-50 px-3 py-2 text-sm text-slate-700"><CheckCircle2 size={15} className="text-emerald-600" /> {signal}</p>
             ))}
           </div>
         </div>
@@ -292,7 +265,7 @@ export default function LandingPage() {
             <a href="https://facebook.com" target="_blank" className="rounded-lg border border-slate-200 p-2 text-slate-600 hover:bg-slate-50" rel="noreferrer"><Facebook size={16} /></a>
             <a href="https://instagram.com" target="_blank" className="rounded-lg border border-slate-200 p-2 text-slate-600 hover:bg-slate-50" rel="noreferrer"><Instagram size={16} /></a>
             <a href="https://wa.me/919810000000" target="_blank" className="rounded-lg border border-slate-200 p-2 text-slate-600 hover:bg-slate-50" rel="noreferrer"><MessageCircle size={16} /></a>
-            <Link href="/contact" className="rounded-lg bg-brand-500 px-3 py-2 text-sm font-semibold text-white">Contact Us</Link>
+            <Link href="/contact" className="rounded-lg bg-orange-500 px-3 py-2 text-sm font-semibold text-white hover:bg-orange-600">Contact Us</Link>
           </div>
         </div>
       </footer>
