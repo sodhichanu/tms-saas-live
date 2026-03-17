@@ -4,7 +4,6 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   ActivitySquare,
-  ArrowRight,
   BadgeDollarSign,
   BriefcaseBusiness,
   Building2,
@@ -14,16 +13,13 @@ import {
   FileCheck2,
   Gauge,
   Instagram,
-  Layers3,
   MessageCircle,
-  Monitor,
   Route,
   ShieldCheck,
   Sparkles,
   Timer,
   Truck,
   Users2,
-  WandSparkles,
 } from 'lucide-react';
 import {
   documentCenter,
@@ -63,39 +59,13 @@ const modes = {
   },
 };
 
-const homepageSkins = [
-  {
-    id: 'cargo-pro',
-    title: 'CargoPro Corporate',
-    tag: 'Enterprise',
-    image: 'https://images.unsplash.com/photo-1529074963764-98f45c47344b?auto=format&fit=crop&w=1400&q=80',
-    points: ['Bold hero + CTA bar', 'Service grid + trust badges', 'Large lane coverage blocks'],
-  },
-  {
-    id: 'fleetflow',
-    title: 'FleetFlow Dynamic',
-    tag: 'Modern',
-    image: 'https://images.unsplash.com/photo-1494412685616-a5d310fbb07d?auto=format&fit=crop&w=1400&q=80',
-    points: ['Animated KPI strip', 'Interactive cards', 'Visual transport storytelling'],
-  },
-  {
-    id: 'logix-dark',
-    title: 'Logix Prime',
-    tag: 'Premium',
-    image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1400&q=80',
-    points: ['Dark-accent hero variant', 'Conversion-focused sections', 'Marketplace-style polish'],
-  },
-];
-
 export default function LandingPage() {
   const [trackNo, setTrackNo] = useState('ORD5001');
   const [quote, setQuote] = useState({ distanceKm: 420, weightTons: 12, cargoType: 'General', serviceLevel: 'Standard' });
   const [mode, setMode] = useState('operations');
-  const [skin, setSkin] = useState('cargo-pro');
 
   const tracking = trackingLookup[trackNo.trim().toUpperCase()] || null;
   const estimatedCost = useMemo(() => estimateQuote(quote), [quote]);
-  const currentSkin = homepageSkins.find((s) => s.id === skin) || homepageSkins[0];
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8">
@@ -103,7 +73,6 @@ export default function LandingPage() {
         <p className="font-display text-lg font-semibold text-brand-900">TransNorth TMS</p>
         <nav className="flex items-center gap-2 text-sm">
           <a href="#features" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Features</a>
-          <a href="#skins" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Skins</a>
           <a href="#templates" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Templates</a>
           <a href="#reviews" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Reviews</a>
           <Link href="/contact" className="rounded-lg bg-brand-500 px-3 py-2 font-semibold text-white hover:bg-brand-600">Contact Us</Link>
@@ -161,60 +130,6 @@ export default function LandingPage() {
           <span>Active Corridors 27</span>
           <span>Active Trucks 86</span>
           <span>Deliveries in Progress 42</span>
-        </div>
-      </section>
-
-      <section id="skins" className="mt-6 card p-5">
-        <div className="mb-4 flex items-center gap-2">
-          <WandSparkles size={18} className="text-brand-600" />
-          <h2 className="font-display text-xl font-semibold">Premium Homepage Skins</h2>
-          <span className="rounded-full bg-brand-50 px-2 py-1 text-xs text-brand-700">Inspired by commercial trucking templates</span>
-        </div>
-
-        <div className="grid gap-4 lg:grid-cols-[300px_1fr]">
-          <div className="space-y-2">
-            {homepageSkins.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setSkin(s.id)}
-                className={`w-full rounded-xl border p-3 text-left transition ${
-                  skin === s.id ? 'border-brand-500 bg-brand-50' : 'border-slate-200 bg-white hover:bg-slate-50'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <p className="font-medium">{s.title}</p>
-                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] text-slate-600">{s.tag}</span>
-                </div>
-                <p className="mt-1 text-xs text-slate-500">{s.points[0]}</p>
-              </button>
-            ))}
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-            <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white">
-              <img src={currentSkin.image} alt={currentSkin.title} className="h-56 w-full object-cover transition duration-500 hover:scale-105" />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-3 text-white">
-                <p className="font-display text-lg font-semibold">{currentSkin.title}</p>
-                <p className="text-xs text-white/85">Interactive preset for transport & trucking websites</p>
-              </div>
-            </div>
-            <div className="mt-3 grid gap-2 sm:grid-cols-3">
-              {currentSkin.points.map((p) => (
-                <div key={p} className="rounded-lg border border-slate-200 bg-white p-2 text-xs text-slate-600">{p}</div>
-              ))}
-            </div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <button className="inline-flex items-center gap-1 rounded-lg bg-brand-500 px-3 py-2 text-xs font-semibold text-white">
-                <Monitor size={14} /> Apply Style
-              </button>
-              <button className="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
-                <Layers3 size={14} /> Compare Layouts
-              </button>
-              <button className="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
-                Explore More <ArrowRight size={13} />
-              </button>
-            </div>
-          </div>
         </div>
       </section>
 
