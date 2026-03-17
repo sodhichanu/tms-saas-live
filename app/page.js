@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ActivitySquare, Route, Truck, Users2, Gauge, Timer, ShieldCheck, BadgeDollarSign, Building2, FileCheck2, Sparkles, Facebook, Instagram, MessageCircle } from 'lucide-react';
-import { estimateQuote, regions, testimonials, trackingLookup, trustSignals } from '@/lib/mockData';
+import { ActivitySquare, Route, Truck, Users2, Gauge, Timer, ShieldCheck, BadgeDollarSign, Building2, FileCheck2, Sparkles, Facebook, Instagram, MessageCircle, Clock3, Download, BriefcaseBusiness } from 'lucide-react';
+import { documentCenter, estimateQuote, regions, testimonials, trackingLookup, transitTimeMatrix, trustSignals } from '@/lib/mockData';
 import Badge from '@/components/ui/Badge';
 
 const features = [
@@ -98,6 +98,50 @@ export default function LandingPage() {
           <div className="mt-4 rounded-xl bg-brand-50 p-3">
             <p className="text-xs uppercase text-brand-700">Estimated Quote</p>
             <p className="text-2xl font-semibold text-brand-900">₹{estimatedCost.toLocaleString('en-IN')}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-7 grid gap-4 lg:grid-cols-2">
+        <div className="card card-lift p-5">
+          <div className="mb-2 flex items-center gap-2">
+            <Clock3 size={18} className="text-brand-600" />
+            <h2 className="font-display text-lg font-semibold md:text-xl">Transit Time Matrix (India)</h2>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="min-w-full text-sm">
+              <thead className="text-left text-slate-500">
+                <tr><th className="py-2">From</th><th>To</th><th>Estimated Time</th></tr>
+              </thead>
+              <tbody>
+                {transitTimeMatrix.map((t) => (
+                  <tr key={`${t.from}-${t.to}`} className="border-t border-slate-100">
+                    <td className="py-2">{t.from}</td><td>{t.to}</td><td>{t.etaHours} hrs</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-slate-500">ETA may vary with weather, lane restrictions, and loading windows.</p>
+        </div>
+
+        <div className="card card-lift p-5">
+          <div className="mb-2 flex items-center gap-2">
+            <Download size={18} className="text-brand-600" />
+            <h2 className="font-display text-lg font-semibold md:text-xl">Document Center</h2>
+          </div>
+          <div className="space-y-2">
+            {documentCenter.map((d) => (
+              <button key={d.file} className="flex w-full items-center justify-between rounded-xl border border-slate-200 px-3 py-2 text-left text-sm hover:bg-slate-50">
+                <span>{d.title}</span>
+                <span className="text-xs text-slate-500">PDF</span>
+              </button>
+            ))}
+          </div>
+          <div className="mt-4 rounded-xl bg-brand-50 p-3">
+            <p className="flex items-center gap-2 text-sm font-medium text-brand-900"><BriefcaseBusiness size={16} /> Drive With Us</p>
+            <p className="mt-1 text-sm text-slate-600">Partner as a fleet owner or driver on major North India lanes.</p>
+            <Link href="/contact" className="mt-2 inline-block text-sm font-semibold text-brand-700">Apply / Contact Team →</Link>
           </div>
         </div>
       </section>
