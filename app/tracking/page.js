@@ -26,8 +26,11 @@ export default function TrackingPage() {
       <TrackingMap points={points} />
       <div className="mt-4 grid gap-3 md:grid-cols-3">
         {points.map((p) => (
-          <div key={p.id} className="card p-4">
-            <p className="font-medium">{p.id}</p>
+          <div key={p.id} className="card card-lift glow-border p-4">
+            <div className="flex items-center justify-between">
+              <p className="font-medium">{p.id}</p>
+              <span className="pulse-dot h-2.5 w-2.5 rounded-full bg-accent" />
+            </div>
             <p className="mt-1 text-sm text-slate-600">{p.route.join(' → ')}</p>
             <div className="mt-3"><Badge>{p.alert}</Badge></div>
           </div>
