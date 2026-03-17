@@ -33,22 +33,22 @@ export default function LandingPage() {
         </nav>
       </header>
 
-      <section className="card glow-border relative overflow-hidden p-7 md:p-10">
+      <section className="card glow-border relative overflow-hidden p-6 md:p-9">
         <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-100 blur-3xl" />
         <div className="absolute -bottom-20 -left-10 h-64 w-64 rounded-full bg-orange-100 blur-3xl" />
         <div className="absolute right-8 top-8 hidden rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-brand-700 backdrop-blur lg:block floating">
           Enterprise Transport Suite
         </div>
 
-        <p className="text-sm font-medium text-brand-600">Modern TMS for North India Lanes</p>
-        <h1 className="mt-2 max-w-4xl font-display text-4xl font-bold leading-tight text-night md:text-5xl">
-          Professional transport and trucking software with moving-fleet visibility, ePOD, billing automation, and secure customer portals.
+        <p className="reveal text-xs font-semibold uppercase tracking-[0.12em] text-brand-600">Modern TMS for North India Lanes</p>
+        <h1 className="reveal reveal-delay-1 mt-2 max-w-4xl font-display text-3xl font-bold leading-snug text-night md:text-4xl">
+          Professional <span className="gradient-text">transport & trucking software</span> with moving-fleet visibility, ePOD, billing automation, and secure customer portals.
         </h1>
-        <p className="mt-4 max-w-3xl text-slate-600">
+        <p className="reveal reveal-delay-2 mt-3 max-w-3xl text-sm leading-relaxed text-slate-600 md:text-base">
           Built for Delhi, Panipat, UP, Bihar, Punjab, Himachal, and Jammu with real-time control, compliance monitoring, and profitability intelligence.
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="reveal reveal-delay-3 mt-5 flex flex-wrap gap-3">
           <Link href="/dashboard" className="rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600">Launch Dashboard</Link>
           <Link href="/portal" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Open Client Portal</Link>
           <Link href="/contact" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Book a Demo</Link>
@@ -105,13 +105,13 @@ export default function LandingPage() {
       <section className="mt-7" id="features">
         <div className="mb-3 flex items-center gap-2">
           <Sparkles size={18} className="text-brand-600" />
-          <h2 className="font-display text-2xl font-semibold">Core Functional Modules</h2>
+          <h2 className="font-display text-xl font-semibold md:text-2xl">Core Functional Modules</h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {features.map((item) => (
             <article key={item.title} className="card card-lift glow-border p-5">
               <item.icon className="text-brand-600 floating" size={20} />
-              <h3 className="mt-3 font-display text-lg font-semibold">{item.title}</h3>
+              <h3 className="mt-3 font-display text-base font-semibold md:text-lg">{item.title}</h3>
               <p className="mt-1 text-sm text-slate-600">{item.text}</p>
             </article>
           ))}
@@ -120,7 +120,7 @@ export default function LandingPage() {
 
       <section className="mt-7 grid gap-4 lg:grid-cols-3" id="reviews">
         <div className="card p-5 lg:col-span-2">
-          <h2 className="font-display text-xl font-semibold">Regions Served</h2>
+          <h2 className="font-display text-lg font-semibold md:text-xl">Regions Served</h2>
           <div className="mt-4 flex flex-wrap gap-2">
             {regions.map((region) => (
               <span key={region} className="rounded-full bg-brand-50 px-3 py-1 text-sm text-brand-900 transition hover:scale-105 hover:bg-brand-100">{region}</span>
@@ -133,7 +133,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="card p-5">
-          <h2 className="font-display text-xl font-semibold">What Customers Think</h2>
+          <h2 className="font-display text-lg font-semibold md:text-xl">What Customers Think</h2>
           <div className="mt-3 space-y-3">
             {testimonials.map((t) => (
               <div key={t.name} className="rounded-lg border border-slate-100 p-3">
