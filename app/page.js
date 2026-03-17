@@ -2,8 +2,34 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ActivitySquare, Route, Truck, Users2, Gauge, Timer, ShieldCheck, BadgeDollarSign, Building2, FileCheck2, Sparkles, Facebook, Instagram, MessageCircle, Clock3, Download, BriefcaseBusiness } from 'lucide-react';
-import { documentCenter, estimateQuote, regions, testimonials, trackingLookup, transitTimeMatrix, trustSignals } from '@/lib/mockData';
+import {
+  ActivitySquare,
+  BadgeDollarSign,
+  BriefcaseBusiness,
+  Building2,
+  Clock3,
+  Download,
+  Facebook,
+  FileCheck2,
+  Gauge,
+  Instagram,
+  MessageCircle,
+  Route,
+  ShieldCheck,
+  Sparkles,
+  Timer,
+  Truck,
+  Users2,
+} from 'lucide-react';
+import {
+  documentCenter,
+  estimateQuote,
+  regions,
+  testimonials,
+  trackingLookup,
+  transitTimeMatrix,
+  trustSignals,
+} from '@/lib/mockData';
 import Badge from '@/components/ui/Badge';
 
 const features = [
@@ -15,61 +41,101 @@ const features = [
   { title: 'Secure Client Portal', text: 'Shipment history, invoice downloads, and preferred addresses.', icon: ShieldCheck },
 ];
 
+const modes = {
+  operations: {
+    title: 'Operations Control Template',
+    text: 'A dispatcher-first layout with trip boards, delay alerts, and lane-level fleet visibility.',
+    points: ['Live fleet heatmap', 'Delay alert panel', 'Shift-wise dispatch tracking'],
+  },
+  client: {
+    title: 'Client Experience Template',
+    text: 'Self-service pages for tracking, quote requests, invoices, and communication logs.',
+    points: ['Tracking portal', 'Quote + booking forms', 'Invoice & document center'],
+  },
+  finance: {
+    title: 'Finance Intelligence Template',
+    text: 'Profitability-first dashboards for fuel, tolls, driver cost, and receivables.',
+    points: ['Trip margin analytics', 'Outstanding dashboard', 'Invoice automation'],
+  },
+};
+
 export default function LandingPage() {
   const [trackNo, setTrackNo] = useState('ORD5001');
   const [quote, setQuote] = useState({ distanceKm: 420, weightTons: 12, cargoType: 'General', serviceLevel: 'Standard' });
+  const [mode, setMode] = useState('operations');
 
   const tracking = trackingLookup[trackNo.trim().toUpperCase()] || null;
   const estimatedCost = useMemo(() => estimateQuote(quote), [quote]);
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8">
-      <header className="mb-4 flex items-center justify-between rounded-2xl border border-slate-200 bg-white/85 p-3 backdrop-blur">
+    <main className="mx-auto max-w-7xl px-4 py-8">
+      <header className="mb-4 flex items-center justify-between rounded-2xl border border-slate-200 bg-white/90 p-3 backdrop-blur">
         <p className="font-display text-lg font-semibold text-brand-900">TransNorth TMS</p>
         <nav className="flex items-center gap-2 text-sm">
           <a href="#features" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Features</a>
+          <a href="#templates" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Templates</a>
           <a href="#reviews" className="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100">Reviews</a>
           <Link href="/contact" className="rounded-lg bg-brand-500 px-3 py-2 font-semibold text-white hover:bg-brand-600">Contact Us</Link>
         </nav>
       </header>
 
-      <section className="card glow-border relative overflow-hidden p-6 md:p-9">
-        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-100 blur-3xl" />
-        <div className="absolute -bottom-20 -left-10 h-64 w-64 rounded-full bg-orange-100 blur-3xl" />
-        <div className="absolute right-8 top-8 hidden rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-brand-700 backdrop-blur lg:block floating">
-          Enterprise Transport Suite
-        </div>
+      <section className="card glow-border relative overflow-hidden p-6 md:p-8">
+        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand-100 blur-3xl" />
+        <div className="absolute -bottom-16 -left-8 h-52 w-52 rounded-full bg-orange-100 blur-3xl" />
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_1fr]">
+          <div>
+            <p className="reveal text-xs font-semibold uppercase tracking-[0.14em] text-brand-600">Professional Transport Technology</p>
+            <h1 className="reveal reveal-delay-1 mt-2 max-w-3xl font-display text-3xl font-bold leading-snug text-night md:text-4xl">
+              Premium <span className="gradient-text">trucking operations platform</span> for India with tracking, ePOD, booking, and billing in one system.
+            </h1>
+            <p className="reveal reveal-delay-2 mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
+              Built for Delhi, Panipat, UP, Bihar, Punjab, Himachal, and Jammu to give dispatch teams and customers a modern, interactive experience.
+            </p>
+            <div className="reveal reveal-delay-3 mt-5 flex flex-wrap gap-3">
+              <Link href="/dashboard" className="rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600">Launch Dashboard</Link>
+              <Link href="/portal" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Client Portal</Link>
+              <Link href="/contact" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Book a Demo</Link>
+            </div>
 
-        <p className="reveal text-xs font-semibold uppercase tracking-[0.12em] text-brand-600">Modern TMS for North India Lanes</p>
-        <h1 className="reveal reveal-delay-1 mt-2 max-w-4xl font-display text-3xl font-bold leading-snug text-night md:text-4xl">
-          Professional <span className="gradient-text">transport & trucking software</span> with moving-fleet visibility, ePOD, billing automation, and secure customer portals.
-        </h1>
-        <p className="reveal reveal-delay-2 mt-3 max-w-3xl text-sm leading-relaxed text-slate-600 md:text-base">
-          Built for Delhi, Panipat, UP, Bihar, Punjab, Himachal, and Jammu with real-time control, compliance monitoring, and profitability intelligence.
-        </p>
+            <div className="mt-5 highway">
+              <span className="truck truck-a">🚚</span>
+              <span className="truck truck-b">🚛</span>
+            </div>
+          </div>
 
-        <div className="reveal reveal-delay-3 mt-5 flex flex-wrap gap-3">
-          <Link href="/dashboard" className="rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600">Launch Dashboard</Link>
-          <Link href="/portal" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Open Client Portal</Link>
-          <Link href="/contact" className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">Book a Demo</Link>
-        </div>
-
-        <div className="mt-6 highway">
-          <span className="truck truck-a">🚚</span>
-          <span className="truck truck-b">🚛</span>
-        </div>
-
-        <div className="mt-7 grid gap-3 md:grid-cols-4">
-          <div className="glass rounded-xl border border-white/70 p-3"><p className="flex items-center gap-2 text-xs text-slate-500"><Gauge size={14} /> Utilization</p><p className="mt-1 text-xl font-semibold text-brand-900">82.4%</p></div>
-          <div className="glass rounded-xl border border-white/70 p-3"><p className="flex items-center gap-2 text-xs text-slate-500"><Timer size={14} /> On-time</p><p className="mt-1 text-xl font-semibold text-brand-900">91.2%</p></div>
-          <div className="glass rounded-xl border border-white/70 p-3"><p className="flex items-center gap-2 text-xs text-slate-500"><Route size={14} /> Active Routes</p><p className="mt-1 text-xl font-semibold text-brand-900">27</p></div>
-          <div className="glass rounded-xl border border-white/70 p-3"><p className="flex items-center gap-2 text-xs text-slate-500"><Building2 size={14} /> Clients</p><p className="mt-1 text-xl font-semibold text-brand-900">140+</p></div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="photo-card col-span-2 h-44">
+              <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1400&q=80" alt="Trucks on highway" className="h-full w-full object-cover" />
+              <span className="photo-tag">Live Fleet</span>
+            </div>
+            <div className="photo-card h-36">
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80" alt="Warehouse logistics" className="h-full w-full object-cover" />
+              <span className="photo-tag">Warehouse Ops</span>
+            </div>
+            <div className="photo-card h-36">
+              <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80" alt="Freight loading" className="h-full w-full object-cover" />
+              <span className="photo-tag">Freight Handling</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="mt-7 grid gap-4 lg:grid-cols-2">
+      <section className="stat-marquee mt-4 card overflow-hidden p-0">
+        <div className="marquee-track">
+          <span>Active Trucks 86</span>
+          <span>Deliveries in Progress 42</span>
+          <span>On-Time Rate 91.2%</span>
+          <span>Monthly Revenue ₹48.25L</span>
+          <span>Fuel Cost ₹13.9L</span>
+          <span>Active Corridors 27</span>
+          <span>Active Trucks 86</span>
+          <span>Deliveries in Progress 42</span>
+        </div>
+      </section>
+
+      <section className="mt-6 grid gap-4 lg:grid-cols-2">
         <div className="card card-lift p-5">
-          <p className="font-display text-xl font-semibold">Track Shipment</p>
+          <p className="font-display text-lg font-semibold">Track Shipment</p>
           <p className="mt-1 text-sm text-slate-600">Enter tracking number (try: ORD5001, ORD5002)</p>
           <div className="mt-3 flex gap-2">
             <input value={trackNo} onChange={(e) => setTrackNo(e.target.value)} className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm" placeholder="Enter tracking number" />
@@ -87,8 +153,8 @@ export default function LandingPage() {
         </div>
 
         <div className="card card-lift p-5">
-          <p className="font-display text-xl font-semibold">Instant Freight Quote</p>
-          <p className="mt-1 text-sm text-slate-600">Estimate quickly by distance, cargo, and service level.</p>
+          <p className="font-display text-lg font-semibold">Instant Freight Quote</p>
+          <p className="mt-1 text-sm text-slate-600">Estimate by distance, cargo, and service level.</p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             <input type="number" value={quote.distanceKm} onChange={(e) => setQuote({ ...quote, distanceKm: Number(e.target.value) })} className="rounded-xl border border-slate-200 px-3 py-2 text-sm" placeholder="Distance (km)" />
             <input type="number" value={quote.weightTons} onChange={(e) => setQuote({ ...quote, weightTons: Number(e.target.value) })} className="rounded-xl border border-slate-200 px-3 py-2 text-sm" placeholder="Weight (tons)" />
@@ -102,7 +168,53 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="mt-7 grid gap-4 lg:grid-cols-2">
+      <section id="templates" className="mt-6 card p-5">
+        <div className="mb-3 flex items-center gap-2">
+          <Sparkles size={18} className="text-brand-600" />
+          <h2 className="font-display text-xl font-semibold">Interactive Layout Templates</h2>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {Object.keys(modes).map((k) => (
+            <button
+              key={k}
+              onClick={() => setMode(k)}
+              className={`rounded-xl px-3 py-2 text-sm font-medium transition ${mode === k ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
+            >
+              {k === 'operations' ? 'Operations' : k === 'client' ? 'Client Experience' : 'Finance'}
+            </button>
+          ))}
+        </div>
+        <div className="mt-4 grid gap-4 md:grid-cols-[1fr_280px]">
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <p className="font-display text-lg font-semibold">{modes[mode].title}</p>
+            <p className="mt-1 text-sm text-slate-600">{modes[mode].text}</p>
+            <ul className="mt-3 space-y-2 text-sm text-slate-700">
+              {modes[mode].points.map((p) => <li key={p}>• {p}</li>)}
+            </ul>
+          </div>
+          <div className="photo-card h-[180px] md:h-full">
+            <img src={mode === 'operations' ? 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=900&q=80' : mode === 'client' ? 'https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=900&q=80' : 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80'} alt="Template preview" className="h-full w-full object-cover" />
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-6" id="features">
+        <div className="mb-3 flex items-center gap-2">
+          <Sparkles size={18} className="text-brand-600" />
+          <h2 className="font-display text-xl font-semibold md:text-2xl">Core Functional Modules</h2>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {features.map((item) => (
+            <article key={item.title} className="card card-lift glow-border p-5">
+              <item.icon className="text-brand-600 floating" size={20} />
+              <h3 className="mt-3 font-display text-base font-semibold md:text-lg">{item.title}</h3>
+              <p className="mt-1 text-sm text-slate-600">{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-6 grid gap-4 lg:grid-cols-2">
         <div className="card card-lift p-5">
           <div className="mb-2 flex items-center gap-2">
             <Clock3 size={18} className="text-brand-600" />
@@ -146,23 +258,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="mt-7" id="features">
-        <div className="mb-3 flex items-center gap-2">
-          <Sparkles size={18} className="text-brand-600" />
-          <h2 className="font-display text-xl font-semibold md:text-2xl">Core Functional Modules</h2>
-        </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          {features.map((item) => (
-            <article key={item.title} className="card card-lift glow-border p-5">
-              <item.icon className="text-brand-600 floating" size={20} />
-              <h3 className="mt-3 font-display text-base font-semibold md:text-lg">{item.title}</h3>
-              <p className="mt-1 text-sm text-slate-600">{item.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-7 grid gap-4 lg:grid-cols-3" id="reviews">
+      <section className="mt-6 grid gap-4 lg:grid-cols-3" id="reviews">
         <div className="card p-5 lg:col-span-2">
           <h2 className="font-display text-lg font-semibold md:text-xl">Regions Served</h2>
           <div className="mt-4 flex flex-wrap gap-2">

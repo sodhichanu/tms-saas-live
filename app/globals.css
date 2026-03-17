@@ -140,6 +140,48 @@ body {
   color: transparent;
 }
 
+.photo-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.photo-card img {
+  transition: transform .5s ease;
+}
+
+.photo-card:hover img {
+  transform: scale(1.06);
+}
+
+.photo-tag {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.75);
+  color: white;
+  font-size: 11px;
+  padding: 4px 10px;
+}
+
+.stat-marquee {
+  background: linear-gradient(90deg, rgba(15,118,110,0.08), rgba(2,132,199,0.08), rgba(249,115,22,0.08));
+}
+
+.marquee-track {
+  display: flex;
+  gap: 42px;
+  padding: 10px 0;
+  font-size: 13px;
+  color: #0f172a;
+  font-weight: 600;
+  white-space: nowrap;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+
 .reveal {
   animation: fadeUp 0.7s ease both;
 }
@@ -171,4 +213,9 @@ body {
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
