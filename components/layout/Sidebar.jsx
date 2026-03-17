@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Truck, Route, Package, Users, Handshake, Wallet } from 'lucide-react';
+import { LayoutDashboard, Truck, Route, Package, Users, Handshake, Wallet, ShieldCheck, FileCheck2 } from 'lucide-react';
 import clsx from 'clsx';
 
 const links = [
@@ -13,6 +13,8 @@ const links = [
   { href: '/drivers', label: 'Drivers & Labour', icon: Users },
   { href: '/crm', label: 'CRM', icon: Handshake },
   { href: '/finance', label: 'Finance', icon: Wallet },
+  { href: '/portal', label: 'Client Portal', icon: ShieldCheck },
+  { href: '/epod', label: 'ePOD', icon: FileCheck2 },
 ];
 
 export default function Sidebar() {
@@ -24,21 +26,21 @@ export default function Sidebar() {
         <p className="mt-1 text-xs text-white/80">North India Control Tower</p>
       </div>
       <div className="p-4">
-      <nav className="mt-4 space-y-1">
-        {links.map(({ href, label, icon: Icon }) => (
-          <Link
-            key={href}
-            href={href}
-            className={clsx(
-              'flex items-center gap-2 rounded-xl px-3 py-2 text-sm transition',
-              pathname === href ? 'bg-brand-50 text-brand-900' : 'text-slate-600 hover:bg-slate-50 hover:translate-x-1'
-            )}
-          >
-            <Icon size={16} />
-            {label}
-          </Link>
-        ))}
-      </nav>
+        <nav className="mt-2 space-y-1">
+          {links.map(({ href, label, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className={clsx(
+                'flex items-center gap-2 rounded-xl px-3 py-2 text-sm transition',
+                pathname === href ? 'bg-brand-50 text-brand-900' : 'text-slate-600 hover:bg-slate-50 hover:translate-x-1'
+              )}
+            >
+              <Icon size={16} />
+              {label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </aside>
   );

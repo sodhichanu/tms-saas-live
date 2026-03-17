@@ -16,7 +16,7 @@ export default function TrackingPage() {
   })), [seed]);
 
   return (
-    <AppShell title="Live Tracking" subtitle="Map telemetry with simulated GPS and route alerts.">
+    <AppShell title="Live Tracking" subtitle="Real-time map, route optimization hints, and delay/deviation alerts.">
       <div className="mb-4 flex items-center justify-between card p-3">
         <p className="text-sm text-slate-600">Simulated feed updates with each refresh click.</p>
         <button className="rounded-xl bg-brand-500 px-3 py-2 text-sm font-semibold text-white" onClick={() => setSeed((s) => s + 1)}>
@@ -32,6 +32,7 @@ export default function TrackingPage() {
               <span className="pulse-dot h-2.5 w-2.5 rounded-full bg-accent" />
             </div>
             <p className="mt-1 text-sm text-slate-600">{p.route.join(' → ')}</p>
+            <p className="mt-1 text-xs text-slate-500">Optimized ETA: {p.optimizedEtaHours} hrs</p>
             <div className="mt-3"><Badge>{p.alert}</Badge></div>
           </div>
         ))}

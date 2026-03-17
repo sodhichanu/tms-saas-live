@@ -12,7 +12,9 @@ const tone = {
   PendingPayment: 'bg-rose-100 text-rose-700',
   'Delay risk': 'bg-rose-100 text-rose-700',
   'Route deviation': 'bg-amber-100 text-amber-800',
-  'On route': 'bg-emerald-100 text-emerald-700'
+  'On route': 'bg-emerald-100 text-emerald-700',
+  Compliant: 'bg-emerald-100 text-emerald-700',
+  'Near Limit': 'bg-amber-100 text-amber-800'
 };
 
 export default function Badge({ children }) {
