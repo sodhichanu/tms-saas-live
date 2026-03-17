@@ -57,7 +57,7 @@ export default function LandingPage() {
     <main className="mx-auto max-w-7xl px-4 py-8">
       <header className="glass mb-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200/80 px-4 py-3">
         <div>
-          <p className="font-display text-lg font-semibold text-slate-900">TransNorth TMS</p>
+          <p className="font-display text-lg font-semibold text-slate-900">LoveKush Transport</p>
           <p className="text-xs text-slate-500">Modern trucking and transport software for India</p>
         </div>
         <nav className="flex flex-wrap items-center gap-2 text-sm">
@@ -93,6 +93,8 @@ export default function LandingPage() {
           <div className="grid grid-cols-2 gap-3">
             <div className="photo-card col-span-2 h-44">
               <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1400&q=80" alt="Freight trucks on highway" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/20 to-transparent" />
+              <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-slate-900">LoveKush Transport</span>
               <span className="photo-tag">Pan-India Long Haul</span>
             </div>
             <div className="photo-card h-32">
